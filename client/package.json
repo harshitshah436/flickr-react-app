@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.1.2",
+    "@types/react-router-dom": "^5.1.3",
     "axios": "^0.18.0",
     "query-string": "^6.2.0",
     "react": "^16.5.2",
@@ -12,7 +13,7 @@
     "react-infinite-scroller": "^1.2.1",
     "react-loading": "^2.0.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "^3.4.0",
     "react-search-input": "^0.11.3"
   },
   "scripts": {
