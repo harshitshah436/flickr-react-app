@@ -9,15 +9,13 @@ class Search extends Component {
     this.state = {
       searchItem: '',
     }
-    this.searchUpdated = this.searchUpdated.bind(this);
-    this.searchItems = this.searchItems.bind(this);
   }
 
-  searchUpdated(item) {
+  searchUpdated = (item) => {
     this.setState({ searchItem: item });
   }
 
-  searchItems() {
+  searchItems = () => {
     if (this.state.searchItem) {
       this.props.history.push('/photos/tags/' + this.state.searchItem);
     } else {
@@ -25,9 +23,27 @@ class Search extends Component {
     }
   }
 
+  ascByName = () => {
+    this.props.history.push('/photos/sort/asc/' + this.state.searchItem);
+  }
+
+  descByName = () => {
+    this.props.history.push('/photos/sort/desc/' + this.state.searchItem);
+  }
+
   render() {
     return (
       <div className="search">
+        <div>
+          Sort by Date:
+          <button onClick={this.ascByName}>
+            ASC
+          </button>
+          |
+          <button onClick={this.descByName}>
+            DESC
+          </button>
+        </div>
         <div className="search-conatainer" >
           <SearchInput className="search-input" onChange={this.searchUpdated} onKeyUp={(event) => {
             if (event.key === 'Enter') {

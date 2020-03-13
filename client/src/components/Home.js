@@ -20,8 +20,7 @@ class Home extends Component {
   type = "spokes";
   loadMore(page) {
     setTimeout(() => {
-      let url = `https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=a5e95177da353f58113fd60296e1d250&user_id=24662369@N07&extras=url_z%2C+views%2C+owner_name&per_page=20&page=${page}&format=json&nojsoncallback=1`
-      // let url = `https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=${key_flickr}&date=&extras=url_z%2C+views%2C+owner_name&per_page=20&page=${page}&format=json&nojsoncallback=1`;
+      let url=`http://localhost:3001/api/flickr/${page}`
       axios.get(url)
         .then((res) => {
           this.setState({

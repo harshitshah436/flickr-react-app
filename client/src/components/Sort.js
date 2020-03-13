@@ -1,65 +1,49 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../styles/home.css';
 import axios from 'axios';
 import ReactLoading from "react-loading";
 import InfiniteScroller from 'react-infinite-scroller';
-import Container from '../components/Container';
+import Container from './Container';
 
-const key_flickr = "f37e96732f6075d33fc9f734702eaf7d";
-class Tag extends Component {
+class Sort extends Component {
     constructor(props) {
-    super(props);
-    this.state = {
-        hasMore: true,
-        elements: [],
-        numberPage: 1,
-        isLoading:false,
-        text: ""
+        super(props);
+        this.state = {
+            hasMore: true,
+            elements: [],
+            numberPage: 1,
+            isLoading: false,
+            text: ""
         };
     }
 
     type = "spokes";
-    loadMore(page) {
+    loadMore(page) {        
         const text = this.props.match.params.id;
+        let url = `http://localhost:3001/api/flickr/sort/asc/${page}/${text}`;
         setTimeout(() => {
-            let url=`http://localhost:3001/api/flickr/${page}/${text}`
             axios.get(url)
-            .then((res) => {
-                this.setState({
-                elements: this.state.elements.concat(res.data.photos.photo),
-                numberPage: res.data.photos.page + 1,
-                hasMore: this.state.numberPage < res.data.photos.pages ? true:false,
-                isLoading:true,
+                .then((res) => {
+                    this.setState({
+                        elements: this.state.elements.concat(res.data.photos.photo),
+                        numberPage: res.data.photos.page + 1,
+                        hasMore: this.state.numberPage < res.data.photos.pages ? true : false,
+                        isLoading: true,
+                    })
                 })
-            })
         }, 0);
     }
 
-    componentDidMount() {
-        this.setState({
-            text: this.props.match.params.id
-        })
-    }
-
-    componentDidUpdate() {
-        const text = this.props.match.params.id;
-        if (text != this.state.text) {
-            this.setState({
-                text,
-                elements: []
-            })
-        }
-    }
     render() {
         const loader =
             <div className="loader" key={0}>
-                <ReactLoading type={this.type} color="black" height={100} width={100}/>
+                <ReactLoading type={this.type} color="black" height={100} width={100} />
             </div>
 
         let images = this.state.elements.map(photo => {
             return {
                 src: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
-                id:photo.id,
+                id: photo.id,
                 thumbnail: photo.url_z,
                 thumbnailWidth: parseInt(photo.width_z),
                 thumbnailHeight: parseInt(photo.height_z),
@@ -70,7 +54,7 @@ class Tag extends Component {
         });
 
         return (
-            <div className = "Explore" >
+            <div className="Explore" >
                 <InfiniteScroller
                     className={"main-explore"}
                     pageStart={0}
@@ -85,4 +69,4 @@ class Tag extends Component {
     }
 }
 
-export default Tag;
+export default Sort;
