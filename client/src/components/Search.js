@@ -11,27 +11,8 @@ class Search extends Component {
     }
   }
 
-  searchUpdated = (item) => {
-    this.setState({ searchItem: item });
-  }
-
-  searchItems = () => {
-    if (this.state.searchItem) {
-      this.props.history.push('/photos/tags/' + this.state.searchItem);
-    } else {
-      alert("Please enter the text to search.");
-    }
-  }
-
-  ascByName = () => {
-    this.props.history.push('/photos/sort/asc/' + this.state.searchItem);
-  }
-
-  descByName = () => {
-    this.props.history.push('/photos/sort/desc/' + this.state.searchItem);
-  }
-
   render() {
+    let text = this.getText();
     return (
       <div className="search">
         <div>
@@ -45,7 +26,7 @@ class Search extends Component {
           </button>
         </div>
         <div className="search-conatainer" >
-          <SearchInput className="search-input" onChange={this.searchUpdated} onKeyUp={(event) => {
+          <SearchInput value={text} className="search-input" onChange={this.searchUpdated} onKeyUp={(event) => {
             if (event.key === 'Enter') {
               this.searchItems();
             }
@@ -56,6 +37,35 @@ class Search extends Component {
         </button>
       </div>
     );
+  }
+
+  searchUpdated = (item) => {
+    this.setState({ searchItem: item });
+  }
+
+  searchItems = () => {
+    if (this.state.searchItem) {
+      this.props.history.push('/photos/tags/' + this.state.searchItem);
+    } else {
+      alert("Please enter the text to search.");
+    }
+  }
+
+  getText() {
+    const url = window.location.href.split('/');
+    if (url.length === 6 && url[4] === "tags") {
+      return url[5];
+    } else if (url.length === 7 && url[4] === "sort") {
+      return url[6];
+    }
+  }
+
+  ascByName = () => {
+    this.props.history.push('/photos/sort/asc/' + this.state.searchItem);
+  }
+
+  descByName = () => {
+    this.props.history.push('/photos/sort/desc/' + this.state.searchItem);
   }
 }
 

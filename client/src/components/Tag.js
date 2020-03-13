@@ -1,88 +1,91 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../styles/home.css';
 import axios from 'axios';
 import ReactLoading from "react-loading";
 import InfiniteScroller from 'react-infinite-scroller';
-import Container from '../components/Container';
+import Container from './Container';
 
-const key_flickr = "f37e96732f6075d33fc9f734702eaf7d";
 class Tag extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
-        hasMore: true,
-        elements: [],
-        numberPage: 1,
-        isLoading:false,
-        text: ""
-        };
-    }
+      hasMore: true,
+      elements: [],
+      numberPage: 1,
+      isLoading: false,
+      text: ""
+    };
+  }
+  type = "spokes";
 
-    type = "spokes";
-    loadMore(page) {
-        const text = this.props.match.params.id;
-        setTimeout(() => {
-            let url=`http://localhost:3001/api/flickr/${page}/${text}`
-            axios.get(url)
-            .then((res) => {
-                this.setState({
-                elements: this.state.elements.concat(res.data.photos.photo),
-                numberPage: res.data.photos.page + 1,
-                hasMore: this.state.numberPage < res.data.photos.pages ? true:false,
-                isLoading:true,
-                })
-            })
-        }, 0);
-    }
+  render() {
+    const loader =
+      <div className="loader" key={0}>
+        <ReactLoading type={this.type} color="black" height={100} width={100} />
+      </div>
 
-    componentDidMount() {
-        this.setState({
-            text: this.props.match.params.id
+    let images = this.state.elements.map(photo => {
+      return {
+        src: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+        id: photo.id,
+        thumbnail: photo.url_z,
+        thumbnailWidth: parseInt(photo.width_z),
+        thumbnailHeight: parseInt(photo.height_z),
+        caption: photo.title,
+        ownername: photo.ownername,
+        views: photo.views,
+      };
+    });
+
+    return (
+      <div className="Explore" >
+        <InfiniteScroller
+          className={"main-explore"}
+          pageStart={0}
+          loadMore={this.loadMore.bind(this)}
+          hasMore={this.state.hasMore}
+          threshold={50}
+          loader={loader}>
+          <Container images={images}></Container>
+        </InfiniteScroller>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    alert("didmount")
+    this.setState({
+      text: this.props.match.params.id,
+      numberPage: 1
+    })
+  }
+
+  componentDidUpdate() {
+    const text = this.props.match.params.id;
+    if (text != this.state.text) {
+      this.setState({
+        text,
+        elements: []
+      })
+    }
+  }
+
+  loadMore(page) {
+    let text = this.props.match.params.id;
+    let url = `http://localhost:3001/api/flickr/${page}/${text}`
+
+    setTimeout(() => {
+      axios.get(url)
+        .then((res) => {
+          this.setState({
+            elements: this.state.elements.concat(res.data.photos.photo),
+            numberPage: res.data.photos.page + 1,
+            hasMore: this.state.numberPage < res.data.photos.pages ? true : false,
+            isLoading: true,
+          })
         })
-    }
-
-    componentDidUpdate() {
-        const text = this.props.match.params.id;
-        if (text != this.state.text) {
-            this.setState({
-                text,
-                elements: []
-            })
-        }
-    }
-    render() {
-        const loader =
-            <div className="loader" key={0}>
-                <ReactLoading type={this.type} color="black" height={100} width={100}/>
-            </div>
-
-        let images = this.state.elements.map(photo => {
-            return {
-                src: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
-                id:photo.id,
-                thumbnail: photo.url_z,
-                thumbnailWidth: parseInt(photo.width_z),
-                thumbnailHeight: parseInt(photo.height_z),
-                caption: photo.title,
-                ownername: photo.ownername,
-                views: photo.views,
-            };
-        });
-
-        return (
-            <div className = "Explore" >
-                <InfiniteScroller
-                    className={"main-explore"}
-                    pageStart={0}
-                    loadMore={this.loadMore.bind(this)}
-                    hasMore={this.state.hasMore}
-                    threshold={50}
-                    loader={loader}>
-                    <Container images={images}></Container>
-                </InfiniteScroller>
-            </div>
-        );
-    }
+    }, 0);
+  }
 }
 
 export default Tag;

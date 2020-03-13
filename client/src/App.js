@@ -22,8 +22,6 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/photos/tags/:id" component={Tag}/>
-            {/* <Route exact path="/photos/sort/:op" component={Sort}/>
-            <Route exact path="/photos/sort/:op/:id" component={Sort}/> */}
             <Route exact path="/photos/sort/asc" component={Sort}/>
             <Route exact path="/photos/sort/asc/:id" component={Sort}/>
             <Route exact path="/photos/sort/desc" component={SortDesc}/>
