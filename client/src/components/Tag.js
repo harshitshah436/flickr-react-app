@@ -42,7 +42,7 @@ class Tag extends Component {
         <InfiniteScroller
           className={"main-explore"}
           pageStart={0}
-          loadMore={this.loadMore.bind(this)}
+          loadMore={this.loadMore.bind()}
           hasMore={this.state.hasMore}
           threshold={50}
           loader={loader}>
@@ -53,10 +53,8 @@ class Tag extends Component {
   }
 
   componentDidMount() {
-    alert("didmount")
     this.setState({
-      text: this.props.match.params.id,
-      numberPage: 1
+      text: this.props.match.params.id
     })
   }
 
@@ -65,12 +63,14 @@ class Tag extends Component {
     if (text != this.state.text) {
       this.setState({
         text,
-        elements: []
+        elements: [],
+        numberPage: 1
       })
     }
   }
 
-  loadMore(page) {
+  loadMore = () => {
+    let page = this.state.numberPage;
     let text = this.props.match.params.id;
     let url = `http://localhost:3001/api/flickr/${page}/${text}`
 
