@@ -16,23 +16,8 @@ class Home extends Component {
       isLoading: false
     };
   }
-
   type = "spokes";
-  loadMore(page) {
-    setTimeout(() => {
-      let url=`http://localhost:3001/api/flickr/${page}`
-      axios.get(url)
-        .then((res) => {
-          this.setState({
-            elements: this.state.elements.concat(res.data.photos.photo),
-            numberPage: res.data.photos.page + 1,
-            hasMore: this.state.numberPage < res.data.photos.pages ? true : false,
-            isLoading: true,
-          })
-        })
-    }, 0);
-  }
-
+  
   render() {
     const loader =
       <div className="loader" key={0}>
@@ -65,6 +50,21 @@ class Home extends Component {
         </InfiniteScroller>
       </div>
     );
+  }
+
+  loadMore(page) {
+    setTimeout(() => {
+      let url=`http://localhost:3001/api/flickr/${page}`
+      axios.get(url)
+        .then((res) => {
+          this.setState({
+            elements: this.state.elements.concat(res.data.photos.photo),
+            numberPage: res.data.photos.page + 1,
+            hasMore: this.state.numberPage < res.data.photos.pages ? true : false,
+            isLoading: true,
+          })
+        })
+    }, 0);
   }
 }
 

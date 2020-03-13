@@ -1,41 +1,33 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Search from '../components/Search.js'
 import '../styles/header.css';
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    goToPageExplorer(){
-        this.props.history.push('/explore');
-    }
+  render() {
+    return (
+      <div className="header" >
+        <div className="app-name" onClick={this.goToPageHome.bind()}>
+          NASA Flickr
+        </div>
 
-    goToPageHome(){
-        this.props.history.push('/');
-    }
+        <div className="mssv" >
+        </div>
 
-    render() {
-        return ( 
-            <div className = "header" >
-                <div className = "app-name" onClick={this.goToPageHome.bind(this)}> 
-                    NASA Flickr 
-                </div> 
+        <div className="search">
+          <Search></Search>
+        </div>
+      </div>
+    );
+  }
 
-                {/* <a className = "explore" onClick={this.goToPageExplorer.bind(this)}>
-                    Explore
-                </a>  */}
-
-                <div className = "mssv" >
-                </div> 
-
-                <div className="search">
-                    <Search></Search>
-                </div>
-            </div>
-        );
-    }
+  goToPageHome = () => {
+    this.props.history.push('/');
+  }
 }
 
 export default withRouter(Header);
