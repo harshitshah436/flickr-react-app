@@ -8,15 +8,15 @@
     border-bottom-right-radius: 7px;
     border: none;
     margin-right: 40px;
-    background: rgb(29, 212, 245);
+    background: #6B6B6B;
 }
 
 .btnSearch:hover{
-    background: rgb(60, 221, 250);
+    background: #B3B3B3;
 }
 
 .btnSearch:active{
-    background: rgb(41, 193, 219);
+    background: #B3B3B3;
 }
 
 .search-input>input{
@@ -27,4 +27,28 @@
     font-size: 18px;
     padding: 8px;
     border: none;
+}
+
+.sort {
+    display: flex;
+    flex-direction: row;
+    background-color: #9A9A9A;
+    background-blend-mode: multiply;
+    align-items: center;
+    margin-right: 75px;
+    font-family: 'Titillium Web', sans-serif;
+    color: white;
+    font-size: large;
+}
+
+.btnSort{
+    border-radius: 7px;
+    border: none;
+    height: 40px;
+    width: 70px;
+    background: #6B6B6B;
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: medium;
 }

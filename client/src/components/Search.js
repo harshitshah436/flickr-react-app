@@ -15,14 +15,14 @@ class Search extends Component {
     let text = this.getText();
     return (
       <div className="search">
-        <div>
-          Sort by Date:
-          <button onClick={this.ascByName}>
-            ASC
+        <div className="sort">
+          Sort:
+          <button className="btnSort" onClick={this.descByName}>
+            Latest
           </button>
           |
-          <button onClick={this.descByName}>
-            DESC
+          <button className="btnSort" onClick={this.ascByName}>
+            Earliest
           </button>
         </div>
         <div className="search-conatainer" >
