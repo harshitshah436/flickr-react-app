@@ -7,6 +7,11 @@ const app = express();
 
 app.set("port", process.env.PORT || 3001);
 
+// Generate Swagger API docs
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // Enable All CORS Requests
 const cors = require('cors')
 app.use(cors())

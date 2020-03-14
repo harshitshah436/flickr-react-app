@@ -1,0 +1,258 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Flickr API to get photos from NASA's public user account",
+    "description": "Node.js API to search and sort NASA flickr images"
+  },
+  "host": "localhost:3001",
+  "basePath": "/api/flickr",
+  "tags": [
+    {
+      "name": "Flickr",
+      "description": "API for photos on the Flickr"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "?page=x": {
+      "parameters": [
+        {
+          "name": "page",
+          "in": "query",
+          "required": true,
+          "description": "page number x",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Flickr"
+        ],
+        "summary": "Get all photos from the page x",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Photos"
+            }
+          }
+        }
+      }
+    },
+    "/search/{page}/{text}": {
+      "parameters": [
+        {
+          "name": "page",
+          "in": "path",
+          "required": true,
+          "description": "page number x",
+          "type": "integer"
+        },
+        {
+          "name": "text",
+          "in": "path",
+          "required": true,
+          "description": "keyword to search photos",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Flickr"
+        ],
+        "summary": "Get all photos from the page x by keyword - text",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Photos"
+            }
+          }
+        }
+      }
+    },
+    "/sort/asc/{page}/{text}": {
+      "parameters": [
+        {
+          "name": "page",
+          "in": "path",
+          "required": true,
+          "description": "page number x",
+          "type": "integer"
+        },
+        {
+          "name": "text",
+          "in": "path",
+          "required": true,
+          "description": "keyword to search photos",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Flickr"
+        ],
+        "summary": "Sort all photos from the page x by keyword - text in ascending order (Earliest first)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Photos"
+            }
+          }
+        }
+      }
+    },
+    "/sort/desc/{page}/{text}": {
+      "parameters": [
+        {
+          "name": "page",
+          "in": "path",
+          "required": true,
+          "description": "page number x",
+          "type": "integer"
+        },
+        {
+          "name": "text",
+          "in": "path",
+          "required": true,
+          "description": "keyword to search photos",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Flickr"
+        ],
+        "summary": "Sort all photos from the page x by keyword - text in descending order (Latest first)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Photos"
+            }
+          }
+        }
+      }
+    },
+    "/photo/{property}/{id}": {
+      "parameters": [
+        {
+          "name": "property",
+          "in": "path",
+          "required": true,
+          "description": "photo property api methods - getSizes, getInfo, getFavorites",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "photo id (ex: 49630233371)",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Flickr"
+        ],
+        "summary": "Get a photo properties by a unique flickr photo id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "property": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Photo": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "server": {
+          "type": "string"
+        },
+        "farm": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "ispublic": {
+          "type": "integer"
+        },
+        "isfriend": {
+          "type": "integer"
+        },
+        "isfamily": {
+          "type": "integer"
+        },
+        "ownername": {
+          "type": "string"
+        },
+        "views": {
+          "type": "string"
+        },
+        "url_z": {
+          "type": "string"
+        },
+        "height_z": {
+          "type": "integer"
+        },
+        "width_z": {
+          "type": "integer"
+        }
+      }
+    },
+    "Photos": {
+      "properties": {
+        "page": {
+          "type": "integer"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "perpage": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "string"
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Photo"
+          }
+        }
+      }
+    }
+  }
+}
