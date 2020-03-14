@@ -37,7 +37,7 @@ class Home extends Component {
     });
 
     return (
-      <div className="Explore" >
+      <div>
         <InfiniteScroller
           className={"main-explore"}
           pageStart={0}

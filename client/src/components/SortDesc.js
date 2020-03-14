@@ -38,7 +38,7 @@ class SortDesc extends Component {
     });
 
     return (
-      <div className="Explore" >
+      <div>
         <InfiniteScroller
           className={"main-explore"}
           pageStart={0}
@@ -51,7 +51,7 @@ class SortDesc extends Component {
       </div>
     );
   }
-  
+
   loadMore(page) {
     const text = this.props.match.params.id;
     let url = `${process.env.REACT_APP_API_SERVER}/api/flickr/sort/desc/${page}/${text}`;
