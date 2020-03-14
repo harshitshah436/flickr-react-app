@@ -70,7 +70,6 @@ app.get("/api/flickr/sort/asc/:page/:text", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(body);
   });
-
 });
 
 app.get("/api/flickr/sort/desc/:page/:text", (req, res) => {
@@ -96,7 +95,26 @@ app.get("/api/flickr/sort/desc/:page/:text", (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(body);
   });
+});
 
+// let urlSize = ``;
+// let urlInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${key_flickr}&photo_id=${id}&format=json&nojsoncallback=1`;
+// let urlFav = `https://api.flickr.com/services/rest/?method=flickr.photos.getFavorites&api_key=${key_flickr}&photo_id=${id}&format=json&nojsoncallback=1`
+
+app.get("/api/flickr/size/:id", (req, res) => {
+  id = req.params.id;
+  console.log("DEBUG 1 : " + id);
+  var opt = {
+    url: `https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${API_KEY}&photo_id=${id}&format=json&nojsoncallback=1`
+  };
+  request(opt, function (err, response, body) {
+    if (err) {
+      throw err;
+    }
+    console.log("DEBUG: " + JSON.stringify(body));
+    res.setHeader('Content-Type', 'application/json');
+    res.send(body);
+  });
 });
 
 app.listen(app.get("port"), () => {
