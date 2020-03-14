@@ -52,12 +52,6 @@ class Tag extends Component {
     );
   }
 
-  componentDidMount() {
-    this.setState({
-      text: this.props.match.params.id
-    })
-  }
-
   componentDidUpdate() {
     const text = this.props.match.params.id;
     if (text != this.state.text) {
@@ -72,7 +66,7 @@ class Tag extends Component {
   loadMore = () => {
     let page = this.state.numberPage;
     let text = this.props.match.params.id;
-    let url = `http://localhost:3001/api/flickr/${page}/${text}`
+    let url = `http://localhost:3001/api/flickr/search/${page}/${text}`
 
     setTimeout(() => {
       axios.get(url)

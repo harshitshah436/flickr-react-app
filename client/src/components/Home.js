@@ -5,7 +5,6 @@ import ReactLoading from "react-loading";
 import InfiniteScroller from 'react-infinite-scroller';
 import Container from '../components/Container';
 
-const key_flickr = "f37e96732f6075d33fc9f734702eaf7d";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +53,7 @@ class Home extends Component {
 
   loadMore(page) {
     setTimeout(() => {
-      let url=`http://localhost:3001/api/flickr/${page}`
+      let url=`http://localhost:3001/api/flickr?page=${page}`
       axios.get(url)
         .then((res) => {
           this.setState({
