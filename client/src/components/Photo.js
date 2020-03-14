@@ -36,7 +36,7 @@ class Photo extends Component {
           (
             <div className="container-photo">
               <div className="photo">
-                <img src={this.state.imageSize.source}></img>
+                <img src={this.state.imageSize.source} alt=""></img>
               </div>
               <div className="content">
                 <div className="content-left">

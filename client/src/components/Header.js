@@ -4,10 +4,6 @@ import '../styles/header.css';
 import { withRouter } from "react-router-dom";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="header" >

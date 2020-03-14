@@ -33,7 +33,7 @@ class Search extends Component {
           }} />
         </div>
         <button className="btnSearch" onClick={this.searchItems}>
-          <img src={process.env.PUBLIC_URL + '/search.png'} />
+          <img src={process.env.PUBLIC_URL + '/search.png'} alt="" />
         </button>
       </div>
     );

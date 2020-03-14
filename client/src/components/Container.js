@@ -24,7 +24,7 @@ class Container extends Component {
 
           <div className="info-view">
             <div className="icon-view">
-              <img src={process.env.PUBLIC_URL + '/view.png'}></img>
+              <img src={process.env.PUBLIC_URL + '/view.png'} alt=""></img>
             </div>
             <div className="number-view">
               {image.views}

@@ -6,17 +6,12 @@ import Photo from './components/Photo.js';
 import Tag from './components/Tag.js';
 import Sort from './components/Sort.js';
 import SortDesc from './components/SortDesc.js';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
-import { BrowserRouter, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <div className="App">
           <Header></Header>
           <Switch>
@@ -29,7 +24,7 @@ class App extends Component {
             <Route path="/photos/:id" component={Photo}/>
           </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

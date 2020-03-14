@@ -54,7 +54,7 @@ class Tag extends Component {
 
   componentDidUpdate() {
     const text = this.props.match.params.id;
-    if (text != this.state.text) {
+    if (text !== this.state.text) {
       this.setState({
         text,
         elements: [],

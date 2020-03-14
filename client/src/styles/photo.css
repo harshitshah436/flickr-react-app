@@ -16,7 +16,6 @@
 .photo{
   display: flex;
   flex-direction: row;
-  /* background-image: linear-gradient(to bottom, #f9feff, #eafafe, #dcf6fe, #cdf2fe, #beeeff); */
   width: 100%;
   align-items: center;
   justify-content: center;
