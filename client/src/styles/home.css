@@ -21,3 +21,11 @@
     justify-content: flex-start;
     margin: 80px 100px 0px 100px;
 }
+
+.loader-no-images{
+    margin-top: 20px;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 50px;
+    color: #6B6B6B;
+    text-align: center;
+}

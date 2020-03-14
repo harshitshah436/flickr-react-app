@@ -13,7 +13,8 @@ class Tag extends Component {
       elements: [],
       numberPage: 1,
       isLoading: false,
-      text: ""
+      text: "",
+      display: 'none'
     };
   }
   type = "spokes";
@@ -48,6 +49,9 @@ class Tag extends Component {
           loader={loader}>
           <Container images={images}></Container>
         </InfiniteScroller>
+        <div className="loader-no-images" style={{display: this.state.display}}>
+          No images found!!<br/>Remove '{this.state.text}' from the searchbox.
+        </div>
       </div>
     );
   }
@@ -58,7 +62,10 @@ class Tag extends Component {
       this.setState({
         text,
         elements: [],
-        numberPage: 1
+        numberPage: 1,
+        hasMore: true,
+        isLoading: false,
+        display: 'none'
       })
     }
   }
@@ -71,6 +78,9 @@ class Tag extends Component {
     setTimeout(() => {
       axios.get(url)
         .then((res) => {
+          if(res.data.photos.photo.length == 0){
+            this.setState({display: 'block'})
+          }
           this.setState({
             elements: this.state.elements.concat(res.data.photos.photo),
             numberPage: res.data.photos.page + 1,
