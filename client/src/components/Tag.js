@@ -66,7 +66,7 @@ class Tag extends Component {
   loadMore = () => {
     let page = this.state.numberPage;
     let text = this.props.match.params.id;
-    let url = `http://localhost:3001/api/flickr/search/${page}/${text}`
+    let url = `${process.env.REACT_APP_API_SERVER}/api/flickr/search/${page}/${text}`
 
     setTimeout(() => {
       axios.get(url)

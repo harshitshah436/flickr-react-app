@@ -54,7 +54,7 @@ class Sort extends Component {
 
   loadMore(page) {
     const text = this.props.match.params.id;
-    let url = `http://localhost:3001/api/flickr/sort/asc/${page}/${text}`;
+    let url = `${process.env.REACT_APP_API_SERVER}/api/flickr/sort/asc/${page}/${text}`;
     setTimeout(() => {
       axios.get(url)
         .then((res) => {

@@ -53,7 +53,7 @@ class Home extends Component {
 
   loadMore(page) {
     setTimeout(() => {
-      let url=`http://localhost:3001/api/flickr?page=${page}`
+      let url=`${process.env.REACT_APP_API_SERVER}/api/flickr?page=${page}`;
       axios.get(url)
         .then((res) => {
           this.setState({

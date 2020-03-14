@@ -96,9 +96,9 @@ class Photo extends Component {
   }
 
   loadImage = async (id) => {
-    let urlSize = `http://localhost:3001/api/flickr/photo/getSizes/${id}`;
-    let urlInfo = `http://localhost:3001/api/flickr/photo/getInfo/${id}`;
-    let urlFav = `http://localhost:3001/api/flickr/photo/getFavorites/${id}`;
+    let urlSize = `${process.env.REACT_APP_API_SERVER}/api/flickr/photo/getSizes/${id}`;
+    let urlInfo = `${process.env.REACT_APP_API_SERVER}/api/flickr/photo/getInfo/${id}`;
+    let urlFav = `${process.env.REACT_APP_API_SERVER}/api/flickr/photo/getFavorites/${id}`;
 
     await axios.get(urlSize)
       .then((res) => {

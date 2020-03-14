@@ -20,7 +20,7 @@ class SortDesc extends Component {
     type = "spokes";
     loadMore(page) {        
         const text = this.props.match.params.id;
-        let url = `http://localhost:3001/api/flickr/sort/desc/${page}/${text}`;
+        let url = `${process.env.REACT_APP_API_SERVER}/api/flickr/sort/desc/${page}/${text}`;
         setTimeout(() => {
             axios.get(url)
                 .then((res) => {
