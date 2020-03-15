@@ -13,13 +13,17 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "nodemon index.js",
+    "server": "npm test && nodemon index.js",
     "client": "node start-client.js",
     "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "mocha --exit"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "concurrently": "3.1.0",
-    "nodemon": "^2.0.2"
+    "mocha": "^7.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   }
 }
