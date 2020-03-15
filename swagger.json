@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "0.0.1",
+    "version": "1.1.0",
     "title": "Flickr API to get photos from NASA's public user account",
     "description": "Node.js API to search and sort NASA flickr images"
   },
