@@ -62,7 +62,7 @@ docker-compose up
 docker-compose down
 ```
 
-#### Restart containers with the new code:
+#### Restart containers with the new code
 
 ```
 docker-compose up --build
