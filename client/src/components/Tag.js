@@ -78,7 +78,7 @@ class Tag extends Component {
     setTimeout(() => {
       axios.get(url)
         .then((res) => {
-          if(res.data.photos.photo.length == 0){
+          if(res.data.photos.photo.length === 0){
             this.setState({display: 'block'})
           }
           this.setState({

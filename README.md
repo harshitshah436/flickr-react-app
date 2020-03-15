@@ -28,7 +28,7 @@ npm start
 ```
 
 #### Explanation:
-- `npm ci` installs npm packages and create `node_modules` directory for both server and client apps.
+- `npm ci` installs npm packages and create `node_modules` directory for both server and client apps. If `npm ci` gives any dependency error, use `npm install` command instead of it.
 - `npm start` command works as below for this application:
     - Concurrently start NodeJS (server) and ReactJS (client) applications.
     - NodeJS server application first runs unit tests before starting the server on the port `3001`.
