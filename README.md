@@ -1,68 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# flickr-react-app
 
-## Available Scripts
+This project fetches images from Flickr using NASA's user account.
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+### Prerequisites
+- `node` & `npm`
+    - With the installation of the node, npm is by default installed.
+    - Verify using the commands: `node -v` & `npm -v`
+    - Application tested on
+        ```
+        $ npm -v
+            6.13.4
+        $ node -v
+            v12.16.1
+        ```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Installation (Steps to Run):
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+In the project root directory, run:
+```
+cd client
+npm ci
+cd ..
+npm ci
+npm start
+```
 
-### `npm test`
+#### Explanation:
+- `npm ci` installs npm packages and create `node_modules` directory for both server and client apps.
+- `npm start` command works as below for this application:
+    - Concurrently start NodeJS (server) and ReactJS (client) applications.
+    - NodeJS server application first runs unit tests before starting the server on the port `3001`.
+    - ReactJS client application runs on the port `3000`.
+- Once all steps are completed successfully, our NASA Flickr application is launched at http://localhost:3000
+- API Documentation (Swagger UI) is available at http://localhost:3001/api-docs
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies used
 
-### `npm run build`
+- NodeJS - backend/server app to create Flickr API using the express router
+- ReactJS - frontend/client app to get Flickr photos and provide search & sort options
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Unit tests
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Using `mocha`, `chai` and `supertest` npm packages, created unit tests for the Flickr API route.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In the project directory, run: `npm test`
 
-### `npm run eject`
+Output:
+```
+   Flickr API
+    ✓ returns photos with 200 status code. GET /api/flickr?page=x (307ms)
+    ✓ returns photos by a keyword with 200 status code. GET /api/flickr/search/:page/:text (478ms)
+    ✓ returns the oldest photos by a keyword with 200 status code. GET /api/flickr/sort/asc/:page/:text (251ms)
+    ✓ returns the latest photos by a keyword with 200 status code. GET /api/flickr/sort/desc/:page/:text (268ms)
+    ✓ returns sizes array by a unique photo id. GET /api/flickr/photo/:property/:id (180ms)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   5 passing (1s)
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## API Documentation (Swagger UI)
+Once the application starts, Swagger UI will available at http://localhost:3001/api-docs.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Rest APIs used
 
-## Learn More
+- [flickr.people.getPublicPhotos](https://www.flickr.com/services/api/flickr.people.getPublicPhotos.html)
+- [flickr.photos.search](https://www.flickr.com/services/api/flickr.photos.search.html)
+- [flickr.photos.getInfo](https://www.flickr.com/services/api/flickr.photos.getInfo.html)
+- [flickr.photos.getSizes](https://www.flickr.com/services/api/flickr.photos.getSizes.html)
+- [flickr.photos.getFavorites](https://www.flickr.com/services/api/flickr.photos.getFavorites.html)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Resources
+* [Flickr API services](https://www.flickr.com/services/api/)
+* [Create React App - Getting Started](https://create-react-app.dev/docs/getting-started)
+* [Adding Swagger to NodeJS project](https://blog.cloudboost.io/adding-swagger-to-existing-node-js-project-92a6624b855b)
