@@ -1,14 +1,8 @@
-// const flickr = require('../routes/flickr.js');
 const app = require('../index.js').app;
 const request = require('supertest');
 const expect = require('chai').expect;
 
 describe("Flickr API", function () {
-  // var req, attributes, role, team;
-  // beforeEach(function () {
-  //   role = "admin";
-  //   team = "SupervisorTeam";
-  // });
 
   it("returns photos with 200 status code. GET /api/flickr?page=x", function (done) {
     request(app)
