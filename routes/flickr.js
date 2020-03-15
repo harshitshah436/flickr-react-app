@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
   console.log( `GET /api/flickr?page=${page}`);
   let url = `${flickrApi}?method=flickr.people.getPublicPhotos&api_key=${api_key}&user_id=${user_id}&extras=url_z%2C+views%2C+owner_name&per_page=20&page=${page}&format=json&nojsoncallback=1`;
   let response = await util.handleRequest(url, "GET");
+  res.set('Content-Type', 'application/json');
   res.send(response);
 });
 
@@ -22,6 +23,7 @@ router.get("/search/:page/:text", async (req, res) => {
   console.log(`GET /api/flickr/search/${page}/${text}`);
   let url = `${flickrApi}?method=flickr.photos.search&api_key=${api_key}&user_id=${user_id}&text=${text}&date=&extras=url_z%2C+views%2C+owner_name&per_page=20&page=${page}&format=json&nojsoncallback=1`;
   let response = await util.handleRequest(url, "GET");
+  res.set('Content-Type', 'application/json');
   res.send(response);
 });
 
@@ -38,6 +40,7 @@ router.get("/sort/asc/:page/:text", async (req, res) => {
     url = `${flickrApi}?method=flickr.photos.search&api_key=${api_key}&user_id=${user_id}&sort=${sortType}&extras=url_z%2C+views%2C+owner_name&per_page=20&page=${page}&format=json&nojsoncallback=1`
   }
   let response = await util.handleRequest(url, "GET");
+  res.set('Content-Type', 'application/json');
   res.send(response);
 });
 
@@ -54,6 +57,7 @@ router.get("/sort/desc/:page/:text", async (req, res) => {
     url = `${flickrApi}?method=flickr.photos.search&api_key=${api_key}&user_id=${user_id}&sort=${sortType}&extras=url_z%2C+views%2C+owner_name&per_page=20&page=${page}&format=json&nojsoncallback=1`
   }
   let response = await util.handleRequest(url, "GET");
+  res.set('Content-Type', 'application/json');
   res.send(response);
 });
 
@@ -64,6 +68,7 @@ router.get("/photo/:property/:id", async (req, res) => {
   console.log(`GET /api/flickr/photo/${property}/${id}`);
   let url = `${flickrApi}?method=flickr.photos.${property}&api_key=${api_key}&photo_id=${id}&format=json&nojsoncallback=1`
   let response = await util.handleRequest(url, "GET");
+  res.set('Content-Type', 'application/json');
   res.send(response);
 });
 

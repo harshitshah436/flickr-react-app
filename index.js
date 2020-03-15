@@ -7,17 +7,13 @@ const app = express();
 
 app.set("port", process.env.PORT || 3001);
 
+//Handles all node middlewares
+app.use(require('./helper/middleware'));
+
 // Generate Swagger API docs
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-// Enable All CORS Requests
-const cors = require('cors')
-app.use(cors())
-
-app.use(express.json());       // to support JSON-encoded bodies
-app.use(express.urlencoded({ extended: false })); // to support URL-encoded bodies
 
 /*==================START APP Code==================*/
 var flickrRouter = require('./routes/flickr');
@@ -33,3 +29,7 @@ app.listen(app.get("port"), () => {
   console.log(`Find the server at: http://localhost:${app.get("port")}/`); // eslint-disable-line no-console
 });
 /*==================END==================*/
+
+module.exports = { 
+  app 
+};
