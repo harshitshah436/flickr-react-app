@@ -61,7 +61,7 @@ Output:
 ```
 
 ## API Documentation (Swagger UI)
-Once the application starts, Swagger UI will available at http://localhost:3001/api-docs.
+Once the application starts, Swagger UI will be available at http://localhost:3001/api-docs.
 
 ## Rest APIs used
 
