@@ -2,9 +2,26 @@
 
 This project fetches images from Flickr using NASA's user account.
 
+## Overview
+
+### Application functions
+
+- The home page fetches the latest Flickr photos from NASA's public user account. It uses Flickr API services to get images and data.
+- Infinite scroller is used to load photos, so when scrolled down, it will pull other images from the next page. Performance-wise this will load faster as we are not waiting to get all Flicker images data at first. Instead, photos from one page are loaded during one rest call.
+- The searching/filtering option is proved by the search bar in the Header. It pulls images from the NASA user account with a provided keyword. Keywords search is performed across photos' title, description or tags. (Keywords tested: NASA, rocket, 2017, NFL)
+- Sort (Latest|Earliest) option in combination with a search keyword can be used to get the latest/oldest photos from NASA's user account.
+- The detailed view can be accessed by clicking on any photo from the grid. This brings up larger thumbnail, title, description, number of views, comments and tags.
+
+### Technologies used
+
+- NodeJS - backend/server app to create Flickr API using the express router
+- ReactJS - frontend/client app to get Flickr photos and provide search & sort options
+
 ## Getting Started
 
-### Prerequisites
+### Installation
+
+#### Prerequisites
 - `node` & `npm`
     - With the installation of the node, npm is by default installed.
     - Verify using the commands: `node -v` & `npm -v`
@@ -16,7 +33,7 @@ This project fetches images from Flickr using NASA's user account.
             v12.16.1
         ```
 
-### Installation (Steps to Run)
+#### Start application (Steps to Run)
 
 In the project **root** directory, run:
 ```
@@ -27,7 +44,8 @@ npm ci
 npm start
 ```
 
-#### Explanation
+##### Explanation
+
 - `npm ci` installs npm packages and create `node_modules` directory for both server and client apps. If `npm ci` gives any dependency error, use `npm install` command instead of it.
 - `npm start` command works as below for this application:
     - Concurrently start NodeJS (server) and ReactJS (client) applications.
@@ -67,11 +85,6 @@ docker-compose down
 ```
 docker-compose up --build
 ```
-
-## Technologies used
-
-- NodeJS - backend/server app to create Flickr API using the express router
-- ReactJS - frontend/client app to get Flickr photos and provide search & sort options
 
 ## Unit tests
 
