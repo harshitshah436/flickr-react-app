@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nodejs:
+    build: .
+    image: flickr-api-nodejs:latest
+    env_file:
+      - .env
+    ports:
+      - "3001:3001"
+    container_name: flickr-api-nodejs
+  react:
+    build: ./client
+    image: flickr-react-app:latest
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    container_name: flickr-react-app
+    environment:
+      WAIT_HOSTS: nodejs:3001

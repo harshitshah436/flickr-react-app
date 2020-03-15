@@ -16,9 +16,9 @@ This project fetches images from Flickr using NASA's user account.
             v12.16.1
         ```
 
-### Installation (Steps to Run):
+### Installation (Steps to Run)
 
-In the project root directory, run:
+In the project **root** directory, run:
 ```
 cd client
 npm ci
@@ -27,7 +27,7 @@ npm ci
 npm start
 ```
 
-#### Explanation:
+#### Explanation
 - `npm ci` installs npm packages and create `node_modules` directory for both server and client apps. If `npm ci` gives any dependency error, use `npm install` command instead of it.
 - `npm start` command works as below for this application:
     - Concurrently start NodeJS (server) and ReactJS (client) applications.
@@ -35,6 +35,38 @@ npm start
     - ReactJS client application runs on the port `3000`.
 - Once all steps are completed successfully, our NASA Flickr application is launched at http://localhost:3000
 - API Documentation (Swagger UI) is available at http://localhost:3001/api-docs
+
+### Installation using Docker (Cloud-native)
+
+#### Prerequisites
+
+- `docker` & `docker-compose`
+    - Verify using the commands: `docker -v` & `docker-compose -v`
+        ```
+        $ docker -v
+            Docker version 19.03.1, build 74b1e89
+        $ docker-compose -v
+            docker-compose version 1.24.1, build 4667896b
+        ```
+
+#### Start application (Steps to Run)
+
+In the project **root** directory, run:
+```
+docker-compose up
+```
+
+#### Stop application
+
+```
+docker-compose down
+```
+
+#### Restart containers with the new code:
+
+```
+docker-compose up --build
+```
 
 ## Technologies used
 
